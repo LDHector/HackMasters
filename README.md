@@ -1,16 +1,9 @@
-# tienda_login
+# HackMasters
+Espacio de trabajo de HackMasters
 
-A new Flutter project.
+App de gestión de emprendimientos realizada con flutter utilizando el lenguaje de programación __Dart__
 
-## Getting Started
+Para instalar flutter seguir los pasos que aparecen en la documentación oficial visitando el siguiente [enlace](https://docs.flutter.dev/get-started/install)
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Dentro de la carpeta __lib__ se encuentran los códigos __.dart__ principales.
+Es necesario tener instaladas todas las dependencias que aparecen en __pubspec.yaml__ para poder ejecutarlo
