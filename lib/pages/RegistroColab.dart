@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:tienda_login/pages/Entrada1.dart';
 import 'package:tienda_login/pages/Estadisticas2.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:tienda_login/pages/Inicio.dart';
@@ -42,7 +43,7 @@ class _RegistroColab extends State<RegistroColab> {
                           children: [
                             Padding(
                               padding:
-                                  const EdgeInsets.only(left: 30.0, top: 180),
+                                  const EdgeInsets.only(left: 2.0, top: 180),
                               child: Text(
                                 "¡Gracias por registrarte!",
                                 style: TextStyle(
@@ -84,7 +85,7 @@ class _RegistroColab extends State<RegistroColab> {
                                   context,
                                   PageTransition(
                                       type: PageTransitionType.fade,
-                                      child: Inicio()));
+                                      child: Entrada1()));
                             },
                             child: Text(
                               "Continuar",
