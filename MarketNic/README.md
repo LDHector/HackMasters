@@ -1,9 +1,5 @@
 <<<<<<< HEAD
-# tienda_login
-
-A new Flutter project.
-
-## Getting Started
+# MarketNic
 
 This project is a starting point for a Flutter application.
 
