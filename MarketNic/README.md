@@ -1,13 +1,9 @@
 <<<<<<< HEAD
-# MarketNic
+# MarketNic (BETA)
+Aplicación para el gestionamiento de emprendimientos, que permite llevar un control de inventario, ingresos y tareas
 
-This project is a starting point for a Flutter application.
+Para poder usarlo es necesario:
 
-A few resources to get you started if this is your first Flutter project:
+- [Instalar flutter según la documentación oficial](https://docs.flutter.dev/get-started/install)
+- [Instalar todas las dependencias que aparecen en el archivo # lib]
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
