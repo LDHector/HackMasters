@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:tienda_login/pages/Inicio.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:tienda_login/pages/Inventario.dart';
 import 'package:tienda_login/pages/Tareas.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 class Estadisticas extends StatelessWidget {
-  final List<Widget> screens = [Inicio(), Inventario(), Tareas()];
+  final List<Widget> screens = [Inicio(), Tareas()];
 
   List<_SalesData> data1 = [
     _SalesData('Ene', 35),

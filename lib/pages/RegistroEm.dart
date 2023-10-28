@@ -1,7 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:tienda_login/pages/Inicio.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:tienda_login/pages/Inventario.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:tienda_login/pages/Registro2.dart';
 import 'package:tienda_login/pages/RegistroEm2.dart';
@@ -12,8 +13,27 @@ class RegistroEm extends StatefulWidget {
 }
 
 class _RegistroEmState extends State<RegistroEm> {
+  FirebaseFirestore db = FirebaseFirestore.instance;
+
+  Future<void> addBusiness(String titulo, String tipo, String numeroTel,
+      String correo, String nombreEmprendimiento) async {
+    Map<String, dynamic> data = {
+      "Titulo": titulo,
+      "Tipo": tipo,
+      "Numero": numeroTel,
+      "Correo": correo
+    };
+
+    await db.collection("Emprendimiento").add(data);
+  }
+
+  TextEditingController titleController = TextEditingController(text: "");
+  TextEditingController typeController = TextEditingController(text: "");
+  TextEditingController numberController = TextEditingController(text: "");
+  TextEditingController emailController = TextEditingController(text: "");
+
   final List<Widget> screens = [RegistroEm2()];
-  final List<String> negocio = [
+  final List<String> tipoEmp = [
     'Ninguno',
     'Accesorios',
     'Ropa',
@@ -109,6 +129,7 @@ class _RegistroEmState extends State<RegistroEm> {
                           height: 46,
                           width: 290,
                           child: TextFormField(
+                            controller: titleController,
                             style: TextStyle(
                                 color: Color(
                                     0xff313A56)), // Establece el color del texto.
@@ -193,10 +214,11 @@ class _RegistroEmState extends State<RegistroEm> {
                                   if (value != null) {
                                     setState(() {
                                       dropdownValue = value;
+                                      typeController.text = value;
                                     });
                                   }
                                 },
-                                items: negocio.map<DropdownMenuItem<String>>(
+                                items: tipoEmp.map<DropdownMenuItem<String>>(
                                     (String value) {
                                   return DropdownMenuItem<String>(
                                     value: value,
@@ -240,6 +262,7 @@ class _RegistroEmState extends State<RegistroEm> {
                           height: 46,
                           width: 290,
                           child: TextFormField(
+                            controller: numberController,
                             style: TextStyle(
                                 color: Color(
                                     0xff313A56)), // Establece el color del texto.
@@ -285,6 +308,7 @@ class _RegistroEmState extends State<RegistroEm> {
                           height: 46,
                           width: 290,
                           child: TextFormField(
+                            controller: emailController,
                             style: TextStyle(
                                 color: Color(
                                     0xff313A56)), // Establece el color del texto.
@@ -307,11 +331,18 @@ class _RegistroEmState extends State<RegistroEm> {
                         padding: EdgeInsets.only(top: 30.0, right: 12),
                         child: ElevatedButton(
                           onPressed: () => {
+                            addBusiness(
+                                titleController.text,
+                                typeController.text,
+                                numberController.text,
+                                emailController.text,
+                                titleController.text),
                             Navigator.push(
                                 context,
                                 PageTransition(
-                                    type: PageTransitionType.fade,
-                                    child: screens[0]))
+                                  type: PageTransitionType.fade,
+                                  child: screens[0],
+                                ))
                           },
                           child: Text(
                             "Registrarse",

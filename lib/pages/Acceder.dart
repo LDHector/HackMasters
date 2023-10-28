@@ -4,9 +4,10 @@ import 'package:get/get.dart';
 import 'package:tienda_login/pages/Estadisticas2.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:tienda_login/pages/Inicio.dart';
-import 'package:tienda_login/pages/Inventario.dart';
 import 'package:tienda_login/pages/RegisterPage.dart';
 import 'package:tienda_login/pages/Tareas.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class Acceder extends StatelessWidget {
   final _formKey =
@@ -16,12 +17,7 @@ class Acceder extends StatelessWidget {
     final query = MediaQuery.of(context);
 
     //Lista de todas las rutas
-    final List<Widget> screens = [
-      Inicio(),
-      Estadisticas(),
-      Inventario(),
-      Tareas()
-    ];
+    final List<Widget> screens = [Inicio(), Estadisticas(), Tareas()];
 
     return MediaQuery(
         data: query.copyWith(textScaleFactor: 1.0),

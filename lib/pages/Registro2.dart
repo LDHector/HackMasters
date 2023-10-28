@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:tienda_login/pages/Estadisticas2.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:tienda_login/pages/Inicio.dart';
-import 'package:tienda_login/pages/Inventario.dart';
 import 'package:tienda_login/pages/RegisterPage.dart';
 import 'package:tienda_login/pages/RegistroEm.dart';
 import 'package:tienda_login/pages/Tareas.dart';

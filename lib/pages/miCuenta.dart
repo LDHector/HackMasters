@@ -5,7 +5,6 @@ import 'package:tienda_login/pages/Estadisticas2.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:tienda_login/pages/Inicio.dart';
 import 'package:tienda_login/pages/Tareas.dart';
-import 'package:tienda_login/pages/Inventario.dart';
 
 class miCuenta extends StatelessWidget {
   @override
@@ -17,7 +16,6 @@ class miCuenta extends StatelessWidget {
       Inicio(),
       Estadisticas(),
       Tareas(),
-      Inventario()
     ];
 
     return MaterialApp(

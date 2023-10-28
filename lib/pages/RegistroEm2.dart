@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:tienda_login/pages/Entrada1.dart';
 import 'package:tienda_login/pages/Estadisticas2.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:tienda_login/pages/Inicio.dart';
-import 'package:tienda_login/pages/Inventario.dart';
 import 'package:tienda_login/pages/RegisterPage.dart';
 import 'package:tienda_login/pages/RegistroEm.dart';
 import 'package:tienda_login/pages/Tareas.dart';
@@ -85,7 +83,7 @@ class _RegistroEm2State extends State<RegistroEm2> {
                                   context,
                                   PageTransition(
                                       type: PageTransitionType.fade,
-                                      child: Entrada1()));
+                                      child: Inicio()));
                             },
                             child: Text(
                               "Continuar",

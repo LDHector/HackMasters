@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tienda_login/pages/Inicio.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:tienda_login/pages/Inventario.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:tienda_login/pages/Registro2.dart';
 import 'package:tienda_login/pages/RegistroColab.dart';
@@ -12,8 +14,60 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPage extends State<RegisterPage> {
+  FirebaseFirestore db = FirebaseFirestore.instance;
+//Guardar un name en la tabla users
+  Future<void> addPeople(
+      String name, String correo, String contrasena, bool colaborador) async {
+    Map<String, dynamic> data = {
+      "Nombre": name,
+      "Correo": correo,
+      "Contraseña": contrasena,
+      "Colaborador": colaborador
+    };
+    await db.collection("Integrantes").add(data);
+  }
+
+  TextEditingController nameController = TextEditingController(text: "");
+  TextEditingController gmailController = TextEditingController(text: "");
+  TextEditingController passController = TextEditingController(text: "");
+  TextEditingController rolController = TextEditingController(text: "");
+  TextEditingController confirmPassController = TextEditingController(text: "");
+
   bool isChecked = false;
   final List<Widget> screens = [Registro2(), RegistroColab()];
+  //Función para validar el correo electrónico
+  bool isEmailValid(String email) {
+    RegExp regex =
+        new RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$');
+    return regex.hasMatch(email);
+  }
+
+  //Función para validar la longitud de la contraseña
+  bool isPasswordLengthValid(String password) {
+    return password.length >= 8 && password.length <= 16;
+  }
+
+  //Función para mostrar un cuadro de diálogo con un mensaje de error
+  void showErrorDialog(BuildContext context, String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Error"),
+          content: Text(message),
+          actions: <Widget>[
+            TextButton(
+              child: Text("Cerrar"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   //Funcion para navegar con el checkbox
   void navigateToNextPage(BuildContext context) {
     //Si es seleccionado el checkbox
@@ -94,6 +148,7 @@ class _RegisterPage extends State<RegisterPage> {
                                           child: Container(
                                             height: 45,
                                             child: TextFormField(
+                                              controller: nameController,
                                               style: TextStyle(
                                                   fontSize: 15,
                                                   color: Color(
@@ -153,6 +208,7 @@ class _RegisterPage extends State<RegisterPage> {
                                           child: Container(
                                             height: 45,
                                             child: TextFormField(
+                                              controller: gmailController,
                                               style: TextStyle(
                                                   fontSize: 15,
                                                   color: Color(
@@ -212,6 +268,8 @@ class _RegisterPage extends State<RegisterPage> {
                                           child: Container(
                                             height: 45,
                                             child: TextFormField(
+                                              obscureText: true,
+                                              controller: passController,
                                               style: TextStyle(
                                                   fontSize: 15,
                                                   color: Color(
@@ -273,6 +331,8 @@ class _RegisterPage extends State<RegisterPage> {
                                           child: Container(
                                             height: 45,
                                             child: TextFormField(
+                                              controller: confirmPassController,
+                                              obscureText: true,
                                               style: TextStyle(
                                                   fontSize: 15,
                                                   color: Color(
@@ -334,8 +394,42 @@ class _RegisterPage extends State<RegisterPage> {
                                     padding:
                                         EdgeInsets.only(top: 0.0, right: 12),
                                     child: ElevatedButton(
-                                      onPressed: () => {
-                                        navigateToNextPage(context),
+                                      onPressed: () async {
+                                        if (nameController.text.isEmpty ||
+                                            gmailController.text.isEmpty ||
+                                            passController.text.isEmpty ||
+                                            confirmPassController
+                                                .text.isEmpty) {
+                                          showErrorDialog(context,
+                                              "Por favor, complete todos los campos.");
+                                          return;
+                                        }
+
+                                        if (!isEmailValid(
+                                            gmailController.text)) {
+                                          showErrorDialog(context,
+                                              "Ingrese un correo electrónico válido.");
+                                          return;
+                                        }
+
+                                        if (!isPasswordLengthValid(
+                                            passController.text)) {
+                                          showErrorDialog(context,
+                                              "La contraseña debe tener entre 8 y 16 caracteres.");
+                                          return;
+                                        }
+                                        if (passController.text !=
+                                            confirmPassController.text) {
+                                          showErrorDialog(context,
+                                              "Las contraseñas no coinciden.");
+                                          return;
+                                        }
+                                        addPeople(
+                                            nameController.text,
+                                            gmailController.text,
+                                            passController.text,
+                                            isChecked);
+                                        navigateToNextPage(context);
                                       },
                                       child: Text(
                                         "Registrarse",
