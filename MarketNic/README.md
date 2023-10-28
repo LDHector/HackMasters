@@ -4,5 +4,5 @@ Aplicación para el gestionamiento de emprendimientos, que permite llevar un con
 Para poder usarlo es necesario:
 
 - [Instalar flutter según la documentación oficial](https://docs.flutter.dev/get-started/install)
-- Instalar todas las dependencias que aparecen en el archivo # Lib
+- Instalar todas las dependencias que aparecen en el archivo *Lib*
 
